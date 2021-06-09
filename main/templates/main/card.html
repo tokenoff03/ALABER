@@ -1,0 +1,73 @@
+{% extends "main/Base.html" %}
+
+{% block title %} ALABER {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="header" style="margin-top: 10px;">
+        <a href="{% url 'main:Index_page' %}" style="text-decoration: none;"><h3 style="margin-left: 300px; color: #5F5E5E;">ALABER</h3></a>
+        <hr>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="window" style="margin-left: auto; margin-right: auto; background-color: #f8f9fa; width: 50%; margin-top: 30px; width: 45%">
+
+            <div class="knopka">
+                <button type="button" class="btn btn-light" style="width: 33%; background-color: #dc3545; color: white;">Банковская карта</button>
+                <button type="button" class="btn btn-light" style="width: 33%; background-color: #dc3545; color: white;">Баланс мобильного</button>
+                <button type="button" class="btn btn-light" style="width: 32%; background-color: #dc3545; color: white;">Электронные деньги</button>
+                <hr>
+            </div>
+
+            <h5 style="margin-top: 10px; margin-left: 50px; color: #FFAD45;">Продукт: <span style="font-family: Comic Sans MS;">{{l.name}}</span></h5>
+            <h5 style="margin-top: 5px; margin-left: 50px; color: #FFAD45" >Сумма к оплате: <span style="font-family: Comic Sans MS;">{{l.cost}} тг</span></h5>
+            <hr>
+            <div class="into_window" style="width: 80%; margin-left: auto; margin-right: auto;">
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+
+                        <legend><span style="font-family: Andale Mono, monospace;">Банковская карта</span></legend>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label mt-4">Номер карты</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="номер карточки" placeholder="Номер карты" name="number">
+                            <small id="emailHelp" class="form-text text-muted">Мы никогда не распространяем ваш номер</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label mt-4">Владелец карты</label>
+                            <input type="text" class="form-control" placeholder="Имя" name="username">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8" style="">
+                                <div class="h">
+                                <label class="form-label mt-4">Дата истечения срока</label>
+                                </div>
+                                <ul style="list-style: none; ">
+                                    <li><input type="number" class="form-control" placeholder="Месяц" style="width: 50%; float:left;" name="month"></li>
+                                    <li><input type="number" class="form-control" placeholder="Год" style="width: 50%; float:left; " name="year"></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label class="form-label mt-4">CVV2/CVC2</label>
+                                <input type="number" class="form-control" placeholder="888" style="width: 100%;" name="num">
+                            </div>
+                        </div>
+                        <div class="l" style="padding-bottom: 30px;">
+                            <button type="submit" class="btn btn-danger pull-right" style="margin-top: 30px; width:100%; height: 50px;">Оплатить</button>
+                        </div>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

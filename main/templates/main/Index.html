@@ -1,0 +1,241 @@
+{% extends "main/Base.html" %}
+
+{% load static %}
+{% block title %} ALABER {% endblock %}
+
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 fixed-top">
+                <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'main:Index_page' %}">ALABER</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                      <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">Бонусы
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Избранные</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Для вас</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Популярные</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle show" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категория</a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Техника</a>
+                            <a class="dropdown-item" href="#">Телефон и Аксессуары</a>
+                            <a class="dropdown-item" href="#">Игрушки и спорт</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Музыка</a>
+                          </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Скидки</a>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left: 70px;">
+                            <a class="nav-link dropdown-toggle show" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Фильтр</a>
+                            <div class="dropdown-menu">
+                                <div class="lk" style="margin-left: 5px; color: #7F7F7F">
+                                    <label class="form-label">От</label>
+                                    <input type="number" class="form-control" placeholder="Цена от: " style="width: 95%;">
+                                </div>
+                                <div class="lk" style="margin-left: 5px; margin-top: 3px; color: #7F7F7F">
+                                    <label class="form-label">До</label>
+                                    <input type="number" class="form-control" placeholder="Цена от: " style="width: 95%;">
+                                </div>
+
+                                <div class="dropdown-divider"></div>
+
+                            </div>
+                        </li>
+                      </ul>
+                      <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text" placeholder="Поиск" style="width: 70%;">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="margin-left: 2px;">Поиск</button>
+                      </form>
+
+                        {% if user.is_authenticated %}
+                          <div class="right_header" style="margin-left: 1%;">
+                            <ul class="navbar-nav me-auto">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle show" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Мой профиль</a>
+
+                                <div class="dropdown-menu" style="width: 160%;">
+                                    <div class="user" style="height: 80px;">
+                                        <div class="row" style="height: 100%">
+
+                                            <div class="userimg col-lg-4" style="width: 100%;">
+                                                <img src="{% static 'main/img/user.png' %}" alt="user" style="padding-left: 2px; width:150%;">
+
+                                            </div>
+                                            <div class="userhello col-lg-8" style="width: 50%;">
+                                                <span style="width: 100%">Здравствуйте {{request.user.first_name}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="exit" style="width: 100%; float:right;">
+
+                                        <a href="{% url 'main:logout' %}" style="color: black; text-decoration: none;"><button class="btn btn-warning pull-right" style="margin-left: 2px; margin-top: 2px;">Выход</button></a>
+                                        <a href="{% url 'main:profile' %}" style="color: black; text-decoration: none;"><button class="btn btn-warning pull-right" style="margin-top: 2px;">Мой профиль</button></a>
+                                        <hr>
+                                    </div>
+
+                                    <div style="margin-left: 11%;">Ваши деньги: 15000</div>
+                                    <div style=" margin-top: 3px; margin-left: 11%;">Ваши монеты: 31</div>
+                                    <a class="dropdown-item" href="#">История</a>
+                                    <a class="dropdown-item" href="{% url 'main:korzina' %}">Корзина</a>
+                                    <a class="dropdown-item" href="#">Мои купоны</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+
+                              </li>
+                            </ul>
+                          </div>
+                        {% else %}
+                            <div class="right_header" style="margin-left: 50px;">
+                            <ul class="navbar-nav me-auto">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle show" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Мой профиль</a>
+
+                                <div class="dropdown-menu" style="width: 165%;">
+                                    <a href="{% url 'main:reg' %}" style="color: black; text-decoration: none;"><button type="submit" class="btn btn-warning pull-right" style="float:right; margin-right: 5%;">Регистрация</button></a>
+                                    <a href="{% url 'main:log' %}" style="color: black; text-decoration: none;"><button type="submit" class="btn btn-warning pull-right" style="float:right; margin-right: 5%;">Вход</button></a>
+                                </div>
+
+
+                              </li>
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+
+</div>
+
+<div class="logo" style="height: 250px; margin-top: 80px;">
+	<div class="wrapper" style="margin-top: 100px;" >
+        <div class="row">
+			<div class="col-lg-4">
+				<div class="sloga1">
+					<img src="{% static 'main/img/text.png' %}" alt="Logo" style="width: 250px; margin-left: 130px; background-color: white;">
+				</div>
+
+			</div>
+
+			<div class="col-lg-8">
+				<div class="slogan" style="font-family: fantasy; height: 250px;">
+					<div class="slogan2" style="padding-top: 75px;">
+						<div class="perv" style="background-color: #222;"><h1 style="color: #ffcc00;">Э, братищке, </h1></div>
+						<div class="perv" style="background-color: #222;"><h1 style="margin-left: 250px;"><span style="color: #ffcc00;">Уялма, кел</span></h1></div>
+						<div class="perv" style="background-color: #222;"><h1 style="text-align: center; color: #ffcc00;">АЛА БЕР!!!</h1></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+	<div class="wrapper" style="margin-top: 100px;" >
+        <div class="row">
+				<div class="col-lg-9">
+
+			            <div class="h2" style="margin-top: 30px; padding-left: 35px;">
+			            <h2>Популярные товары</h2>
+			            </div>
+			            <hr>
+			            <div class="row" style="padding-left: 20px;">
+                            {% if products %}
+                                {% for i in products %}
+
+                                    <div class="films_block col-lg-3 col-sm-3 col-xs-6" style="text-align: center;">
+                                        <a href="{% url 'main:prod' i.pk %}"><img src="{{MEDIA_URL}}{{i.img}}" alt="product" style="margin-bottom: 5%; border-radius: 5px; border: solid 5px #dad7d5; width: 100%;"></a>
+                                        <div class="film_label" style="padding: 2%; margin-bottom: 4%;"><a href="{% url 'main:prod' i.pk %}">{{i.name}}</a></div>
+                                    </div>
+
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-center"><h1>Пока что продуктов нет!</h1></p>
+                            {% endif %}
+
+
+			    		</div>
+
+
+			    		<div class="123" style="margin-top: 70px; margin-left: 410px; ">
+						  <ul class="pagination pagination-lg">
+						    <li class="page-item disabled">
+						      <a class="page-link" href="#">&laquo;</a>
+						    </li>
+						    <li class="page-item active">
+						      <a class="page-link" href="#">1</a>
+						    </li>
+						    <li class="page-item" style="color: #6c757d">
+						      <a class="page-link" href="#">2</a>
+						    </li>
+						    <li class="page-item">
+						      <a class="page-link" href="#">3</a>
+						    </li>
+						    <li class="page-item">
+						      <a class="page-link" href="#">4</a>
+						    </li>
+						    <li class="page-item">
+						      <a class="page-link" href="#">5</a>
+						    </li>
+						    <li class="page-item">
+						      <a class="page-link" href="#">&raquo;</a>
+						    </li>
+						  </ul>
+						</div>
+
+				</div>
+
+				<div class="col-lg-3">
+					<div class="skidka" style="margin-top: 31px; padding-left: 15px;">
+						<h2>Скидки</h2>
+						<hr>
+							<div class="films_block col-lg-2 col-sm-3 col-xs-6">
+				                <a href=""><img src="{% static 'main/img/ski1.jpg' %}" alt="skidka" style="width: 233px;"></a>
+				        	</div>
+
+				        	<div class="films_block col-lg-2 col-sm-3 col-xs-6" style="margin-top: 20px;">
+				                <a href=""><img src="{% static 'main/img/ski2.jpg' %}" alt="skidka" style="width: 233px;"></a>
+				        	</div>
+
+				        	<div class="films_block col-lg-2 col-sm-3 col-xs-6" style="margin-top: 20px;">
+				                <a href=""><img src="{% static 'main/img/ski3.jpeg' %}" alt="skidka" style="width: 233px;"></a>
+				        	</div>
+
+				        	<div class="films_block col-lg-2 col-sm-3 col-xs-6" style="margin-top: 20px;">
+				                <a href=""><img src="{% static 'main/img/ski4.jpg' %}" alt="skidka" style="width: 233px;"></a>
+				        	</div>
+
+
+					</div>
+				</div>
+		</div>
+	</div>
+
+<div class="margin-8" style="margin-top: 8%;"></div>
+<footer style="color: #666; background-color: #222; padding: 17px 0 18px 0; border-top: 1px solid #000;">
+      <div class="container">
+        <p class="text-center"><a href="{% url 'main:Index_page' %}" style="color: #999;">ALABER.KZ</a></p>
+      </div>
+</footer>
+
+
+{% endblock %}

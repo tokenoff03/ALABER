@@ -1,0 +1,43 @@
+{% extends "main/Base.html" %}
+
+{% block title %} ALABER {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="header" style="margin-top: 10px;">
+        <a href="{% url 'main:Index_page' %}" style="text-decoration: none;"><h3 style="margin-left: 300px; color: #5F5E5E;">ALABER</h3></a>
+        <hr>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="window" style="margin-left: auto; margin-right: auto; background-color: #f8f9fa; width: 50%; margin-top: 30px; width: 45%">
+
+            <div class="knopka">
+                <button type="button" class="btn btn-light" style="width: 33%; background-color: #dc3545; color: white;">Банковская карта</button>
+                <button type="button" class="btn btn-light" style="width: 33%; background-color: #dc3545; color: white;">Баланс мобильного</button>
+                <button type="button" class="btn btn-light" style="width: 32%; background-color: #dc3545; color: white;">Электронные деньги</button>
+                <hr>
+            </div>
+
+            <h5 style="margin-top: 10px; margin-left: 50px; color: #FFAD45; font-size: 2em;">Продукт: <span style="font-family: Comic Sans MS;">{{s.name}}</span></h5>
+
+            <hr>
+            <div class="into_window" style="width: 80%; margin-left: auto; margin-right: auto;">
+                <h5 style="margin-top: 50px; margin-left: 50px; color: #7B8BA2" ><span style="font-family: Luminari, fantasy; font-size: 2em;">Покупка успешно совершена</span></h5>
+                <h4  style="margin-left: 50px; color: #7B8BA2; font-family: Luminari, fantasy; font-size: 2em">Благодарим за  покупку!!!</h4>
+            </div>
+            <hr style="margin-top: 50px;">
+            <div class="nomer" style="padding-bottom: 30px; margin-left: 20px; font-family: Luminari, fantasy;  color: #808080;">
+                <span style="font-size: 1.3em;">Ваш номер  карточки:  </span>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

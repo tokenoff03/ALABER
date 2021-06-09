@@ -1,0 +1,72 @@
+{% extends "main/Base.html" %}
+
+{% block title %} Авторизация {% endblock %}
+{% load static %}
+
+{% block content %}
+<div id="intro" class="view">
+    <div class="full-bd-img">
+
+    </div>
+</div>
+<div class="row">
+
+    <div class="container-fluid">
+        <div class="col-sm-12">
+
+            <div class="header" style="margin-top: 10px;">
+                <a href="{% url 'main:Index_page' %}" style="text-decoration: none;"><h3 style="margin-left: 300px; color: #5F5E5E;">ALABER</h3></a>
+                <hr>
+            </div>
+            <div class="container" style="margin-top: 120px; width: 60%;">
+
+                <h1 class="text-center display-4 mb-2" style="font-family: Courier New, monospace; color: #3C3C3C; text-align: center;">Авторизация</h1>
+
+                <div class="dsd">
+                    <form class="form" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="username" class="form-control d-block mx-auto mt-2" style="width: 52%;" placeholder="Логин">
+                        <input type="password" name="pass" class="form-control d-block mx-auto mt-2" style="width: 52%;" placeholder="Пароль">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="sdsdasd" style="margin-top: 10px; float:right;">
+                                    <a href="#">Забыли пароль?</a>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-7">
+                                <button type="submit" class="btn btn-warning pull-right" style=" margin-top: 10px;">
+                                <a href="{% url 'main:reg' %}" style="color: black; text-decoration: none;">Регистрация</a></button>
+                                <button class="btn btn-warning pull-right" style="float: right; margin-right: 5px; margin-top: 10px; float: left; margin-left: 75px;" type="submit">Вход</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+                <div class="container" style="width: 70%; ">
+                    <div class="soc" style="margin-top: 60px; margin-left: 32%;">
+                        <span style="color: #999; font-size: 120%;">Войти через соц сети</span>
+                    </div>
+
+                    <div class="socc" style="margin-top: 20px; margin-left: 20%;">
+                        <a href=""><img src="{% static 'main/img/vk.png' %}" alt="soc" style="width: 50px;"> </a>
+                        <a href=""><img src="{% static 'main/img/face.png' %}" alt="soc" style="width: 50px; margin-left: 30px;"></a>
+                        <a href=""><img src="{% static 'main/img/google.jpg' %}" alt="soc" style="width: 50px; margin-left: 30px;"></a>
+                        <a href=""><img src="{% static 'main/img/insta.png' %}" alt="soc" style="width: 50px; margin-left: 30px;"></a>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

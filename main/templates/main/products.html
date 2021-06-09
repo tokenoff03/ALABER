@@ -1,0 +1,275 @@
+{% extends "main/Base.html" %}
+{% load static %}
+{% block title %} ALABER {% endblock %}
+
+{% block content %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 fixed-top">
+                <nav class="navbar navbar-expand-sm navbar-light bg-light">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'main:Index_page' %}">ALABER</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                      <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#">Бонусы
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Избранные</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Для вас</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Популярные</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle show" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Категория</a>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Техника</a>
+                            <a class="dropdown-item" href="#">Телефон и Аксессуары</a>
+                            <a class="dropdown-item" href="#">Игрушки и спорт</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Музыка</a>
+                          </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Скидки</a>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left: 70px;">
+                            <a class="nav-link dropdown-toggle show" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Фильтр</a>
+                            <div class="dropdown-menu">
+                                <div class="lk" style="margin-left: 5px; color: #7F7F7F">
+                                    <label class="form-label">От</label>
+                                    <input type="number" class="form-control" placeholder="Цена от: " style="width: 95%;">
+                                </div>
+                                <div class="lk" style="margin-left: 5px; margin-top: 3px; color: #7F7F7F">
+                                    <label class="form-label">До</label>
+                                    <input type="number" class="form-control" placeholder="Цена от: " style="width: 95%;">
+                                </div>
+
+                                <div class="dropdown-divider"></div>
+
+                            </div>
+                        </li>
+                      </ul>
+                      <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text" placeholder="Поиск" style="width: 70%;">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit" style="margin-left: 2px;">Поиск</button>
+                      </form>
+
+                        {% if user.is_authenticated %}
+                          <div class="right_header" style="margin-left: 1%;">
+                            <ul class="navbar-nav me-auto">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle show" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Мой профиль</a>
+
+                                <div class="dropdown-menu" style="width: 160%;">
+                                    <div class="user" style="height: 80px;">
+                                        <div class="row" style="height: 100%">
+
+                                            <div class="userimg col-lg-4" style="width: 100%;">
+                                                <img src="{% static 'main/img/user.png' %}" alt="user" style="padding-left: 2px; width:150%;">
+
+                                            </div>
+                                            <div class="userhello col-lg-8" style="width: 50%;">
+                                                <span style="width: 100%">Здравствуйте {{request.user.first_name}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="exit" style="width: 100%; float:right;">
+
+                                        <a href="{% url 'main:logout' %}" style="color: black; text-decoration: none;"><button class="btn btn-warning pull-right" style="margin-left: 2px; margin-top: 2px;">Выход</button></a>
+                                        <a href="{% url 'main:profile' %}" style="color: black; text-decoration: none;"><button class="btn btn-warning pull-right" style="margin-top: 2px;">Мой профиль</button></a>
+                                        <hr>
+                                    </div>
+
+                                    <div style="margin-left: 11%;">Ваши деньги: 15000</div>
+                                    <div style=" margin-top: 3px; margin-left: 11%;">Ваши монеты: 31</div>
+                                    <a class="dropdown-item" href="#">История</a>
+                                    <a class="dropdown-item" href="{% url 'main:korzina' %}">Корзина</a>
+                                    <a class="dropdown-item" href="#">Мои купоны</a>
+                                    <div class="dropdown-divider"></div>
+                                </div>
+
+                              </li>
+                            </ul>
+                          </div>
+                        {% else %}
+                            <div class="right_header" style="margin-left: 50px;">
+                            <ul class="navbar-nav me-auto">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle show" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Мой профиль</a>
+
+                                <div class="dropdown-menu" style="width: 165%;">
+                                    <a href="{% url 'main:reg' %}" style="color: black; text-decoration: none;"><button type="submit" class="btn btn-warning pull-right" style="float:right; margin-right: 5%;">Регистрация</button></a>
+                                    <a href="{% url 'main:log' %}" style="color: black; text-decoration: none;"><button type="submit" class="btn btn-warning pull-right" style="float:right; margin-right: 5%;">Вход</button></a>
+                                </div>
+
+
+                              </li>
+                            </ul>
+                          </div>
+                        {% endif %}
+
+                    </div>
+                  </div>
+                </nav>
+            </div>
+        </div>
+
+</div>
+
+	<div class="wrapper" style="margin-top: 100px;" >
+      	<div class="container">
+        	<div class="row">
+
+          		<div class="col-lg-4 ">
+
+					<div class="photo">
+						<img src="{{MEDIA_URL}}{{p.img}}" alt="product" style="margin-bottom: 5%; border-radius: 5px; border: solid 5px #dad7d5; width: 100%;">
+					</div>
+                    <div class="nimg" style="text-align: center;">
+                        <h3 style="font-family: Comic Sans MS; color: #17DC7B;">{{p.name}}</h3>
+                    </div>
+
+           		</div>
+
+           		<div class="col-lg-8">
+                    <div class="cc" style="background-color: #E9E9E9; border-radius: 5px; border: solid 3px #dad7d5;">
+                        <div class="ccc" style="padding: 2%;">
+
+                            <div class="descript">
+                                <h2>Описание</h2>
+                                <hr>
+                                <p>{{p.descriptioon}}</p>
+                            </div>
+                            <div class="cost" style="margin-top: 50px;">
+                                <h2>Цена: <span style="color: #dc3545;">{{p.cost}}</span> <span style="color: #DC068B;">тг/{{p.volume_type.name}}</span></h2>
+                                <hr>
+                            </div>
+
+                            <div class="amount" style="margin-top: 50px;">
+                                <h2><span>Есть в наличии:</span> <span style="color: #dc3545; margin-left: 15px;">{{p.available_amount}}</span> <span style="color: #DC068B;">{{p.volume_type.name}}</span></h2>
+                                <hr>
+                            </div>
+
+                            <div class="valume" style="margin-top: 20px; margin-bottom: 40px;">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <span style="font-weight: 500; font-size: 2rem;">Количество:</span>
+
+                                    </div>
+                                    <div class="col-sm-8">
+                                         <input type="number" value="1" class="btn btn-light" style="width: 100px; margin-top: 2%;">
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="buy" style="width: 47%; margin-left: 357px; margin-top: 65px;">
+                                <a href="{% url 'main:pay_cart' p.pk %}" style="text-decoration: none; color: white;"><button type="submit" class="btn btn-danger pull-right">Купить сейчас!</button></a>
+                                <a href="{% url 'main:add_cart' p.pk %}"><button type="submit" class="btn btn-warning pull-right" style="color: white;">Добавить в Корзину!</button></a>
+                            </div>
+
+                        </div>
+                    </div>
+              		<div class="comment" style="margin-top: 100px;">
+
+              			<h2>Отзыв о продукте</h2>
+				            <hr>
+                            {% for c in comments %}
+                                <div class="panel panel-info" style="border: none; margin-bottom: 4%;">
+                                  <div class="panel-heading" style="background-color: #f0ad4e; color: white; border-color: transparent;">
+                                      <div style="margin-left: 10px; padding: 1%; font-size: 1.1em;"><img src="{% static 'main/img/user.png' %}" alt="user" style="width: 5%;"><span style="margin-left: 1%;">{{c.username}}</span></div>
+                                      {% if request.user.is_authenticated and request.user.username == c.username %}
+                                          <div class="btn-group" role="group" style="float:right;">
+                                              <button id="btnGroupDrop2" type="button" class="btn btn-light dropdown-toggle show" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                                                  <a class="dropdown-item" href="{% url 'main:change_comment' c.pk %}">Изменить комментарий</a>
+                                                  <a class="dropdown-item" href="{% url 'main:delete_comment' c.pk %}">Удалить комментарий</a>
+                                              </div>
+                                          </div>
+                                      {% endif %}
+                                  </div>
+
+                                  <div class="panel-body" style="background-color: #f9f9f9;">
+                                      <div class="comment" style="margin-left: 10px; padding: 1%;">{{c.text}}</div>
+
+                                      {% if c.img %}
+                                        <img src="{{MEDIA_URL}}{{c.img}}" alt="Картинка комент" style="width: 100px; margin-top: 5px; margin-left: 10px;">
+                                      {% else %}
+
+                                      {% endif %}
+
+                                  </div>
+                                </div>
+                            {% endfor %}
+
+                            {% if user.is_authenticated %}
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="form-group">
+                                      <textarea name="text" class="form-control" style="height: 200px;"></textarea>
+                                    </div>
+                                    <div class="wrapper">
+                                        <div class="container">
+                                            <div class="row">
+
+                                                <div class="col-lg-3 ">
+                                                    <div class="buttons" style="">
+                                                        <button class="btn btn-lg btn-secondary pull-right" type="submit">Отправить</button>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <div class="form-group" style="float: left;">
+                                                        <input class="form-control pull-right" name="img" type="file" id="formFile" style="width: 100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% else %}
+                                <div class="ER">
+                                    <hr>
+                                    <h4 style="text-align: center;">Войдите чтобы оставить комментарий</h4>
+                                    <div class="lol">
+                                        <button type="submit" class="btn btn-warning pull-right" style="float:right; margin-right: 35%;"><a href="{% url 'main:reg' %}" style="color: black; text-decoration: none;">Регистрация</a></button>
+                                        <button type="submit" class="btn btn-warning pull-right" style="float:right; margin-right: 4%; width: 15%;"><a href="{% url 'main:log' %}" style="color: black; text-decoration: none;">Вход</a></button>
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+              		</div>
+
+
+           		</div>
+
+
+           	</div>
+
+        </div>
+    </div>
+
+<div class="margin-8" style="margin-top: 8%;"></div>
+<footer style="color: #666; background-color: #222; padding: 17px 0 18px 0; border-top: 1px solid #000;">
+      <div class="container">
+        <p class="text-center"><a href="{% url 'main:Index_page' %}" style="color: #999;">ALABER.KZ</a></p>
+      </div>
+</footer>
+
+
+
+
+{% endblock %}
